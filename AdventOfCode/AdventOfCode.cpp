@@ -1,20 +1,37 @@
-﻿// AdventOfCode.cpp : Tento soubor obsahuje funkci main. Provádění programu se tam zahajuje a ukončuje.
-//
+﻿#include <iostream>
+#include <fstream>
+#include <vector>
 
-#include <iostream>
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    //opening of file and reading
+    std::ifstream file("data.txt");
+    std::vector<int> import;
+    int scan;
+    while (file >> scan)
+    {
+        import.push_back(scan);
+    }
+    file.close();
+
+    //counting number of increases
+    int counter = 0;
+    for (size_t i = 1; i < import.size(); i++)
+    {
+        if (import[i - 1] < import[i])
+            counter++;
+    }
+
+    std::cout << "Number of increases A: " << counter << std::endl;
+
+    //counting number of increases
+    counter = 0;
+    for (size_t i = 1; i < import.size() - 2; i++)
+    {
+        if (import[i - 1] < import[i + 2])
+            counter++;
+    }
+
+    std::cout << "Number of increases B: " << counter << std::endl;
 }
-
-// Spuštění programu: Ctrl+F5 nebo nabídka Ladit > Spustit bez ladění
-// Ladění programu: F5 nebo nabídka Ladit > Spustit ladění
-
-// Tipy pro zahájení práce:
-//   1. K přidání nebo správě souborů použijte okno Průzkumník řešení.
-//   2. Pro připojení ke správě zdrojového kódu použijte okno Team Explorer.
-//   3. K zobrazení výstupu sestavení a dalších zpráv použijte okno Výstup.
-//   4. K zobrazení chyb použijte okno Seznam chyb.
-//   5. Pokud chcete vytvořit nové soubory kódu, přejděte na Projekt > Přidat novou položku. Pokud chcete přidat do projektu existující soubory kódu, přejděte na Projekt > Přidat existující položku.
-//   6. Pokud budete chtít v budoucnu znovu otevřít tento projekt, přejděte na Soubor > Otevřít > Projekt a vyberte příslušný soubor .sln.
